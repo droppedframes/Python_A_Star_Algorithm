@@ -29,7 +29,7 @@ def main():
     index = 0
     for row in range(0,SIZE):
         for col in range(0,SIZE):
-            if random.random() > .1 or index == 0 or index == SIZE*SIZE:
+            if random.random() > .0 or index == 0 or index == SIZE*SIZE:
                 isNode = True #whitespot
             else:
                 isNode = False #blackspot
@@ -38,14 +38,25 @@ def main():
 
 
     for i in range(len(NODES)):
-        if NODES[i]['x'] < SIZE-1:
+        if NODES[i]['x'] < SIZE-1: #3:00
             NODES[i]['neighbors'].append(i+1)
-        if NODES[i]['y'] < SIZE-1:
+        if NODES[i]['y'] < SIZE-1: #6:00
             NODES[i]['neighbors'].append(i+SIZE)
-        if NODES[i]['x'] > 0:
+        if NODES[i]['x'] > 0:      #12:00
             NODES[i]['neighbors'].append(i-1)
-        if NODES[i]['y'] > 0:
+        if NODES[i]['y'] > 0:      #9PM
             NODES[i]['neighbors'].append(i-SIZE)
+
+        if NODES[i]['x'] > 0 and NODES[i]['y'] > 0:#10:30
+            NODES[i]['neighbors'].append(i-1-SIZE)
+        if NODES[i]['x'] < SIZE-1 and NODES[i]['y'] > 0:#1:30
+            NODES[i]['neighbors'].append(i+1-SIZE)      
+        if NODES[i]['x'] < SIZE-1 and NODES[i]['y'] < SIZE-1: #4:30
+            NODES[i]['neighbors'].append(i+1+SIZE)      
+        if NODES[i]['x'] > 0 and NODES[i]['y'] < SIZE-1: #7:30
+            NODES[i]['neighbors'].append(i-1+SIZE)  
+
+
         print(NODES[i])
         
 
